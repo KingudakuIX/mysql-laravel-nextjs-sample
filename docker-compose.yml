@@ -1,0 +1,42 @@
+services:
+  backend:
+    container_name: backend
+    build:
+      args:
+        user: kingudaku
+        uid: 1000
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      DB_HOST: db
+      DB_DATABASE: example
+      DB_USERNAME: admin
+      DB_PASSWORD: admin
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    networks:
+      - app
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    networks:
+      - app
+  
+  db:
+    image: mysql:8.2.0
+    environment:
+      MYSQL_DATABASE: 'example'
+      MYSQL_USER: 'admin'
+      MYSQL_PASSWORD: 'admin'
+      MYSQL_ROOT_PASSWORD: 'root'
+    networks:
+      - app
+  
+networks:
+  app:
+    driver: bridge
