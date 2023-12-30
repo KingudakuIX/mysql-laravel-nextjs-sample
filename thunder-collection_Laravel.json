@@ -1,0 +1,210 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Laravel",
+    "dateExported": "2023-12-30T14:16:12.869Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "d3956703-2179-4204-be5b-67b0414d6595",
+            "name": "Articles",
+            "containerId": "",
+            "created": "2023-12-30T11:43:36.946Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "bcd8e8f5-8b01-439a-b049-06cb716f0962",
+            "name": "Authentication",
+            "containerId": "",
+            "created": "2023-12-30T11:43:53.016Z",
+            "sortNum": 20000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "a4c20d79-bd90-49b2-969c-ac1b4c07402a",
+            "colId": "f240a3fe-ee25-4e16-b495-05d0ce14c028",
+            "containerId": "d3956703-2179-4204-be5b-67b0414d6595",
+            "name": "Get All Articles (Index)",
+            "url": "{{APP_URL}}/articles",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-12-30T10:32:03.281Z",
+            "modified": "2023-12-30T12:38:53.414Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "token",
+                    "value": "Bearer {{bearer_token}}",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{bearer_token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "4dbdfd62-5b75-4cea-8e21-56940436314a",
+            "colId": "f240a3fe-ee25-4e16-b495-05d0ce14c028",
+            "containerId": "bcd8e8f5-8b01-439a-b049-06cb716f0962",
+            "name": "Cookie",
+            "url": "http://localhost:8000/sanctum/csrf-cookie",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-12-30T11:55:44.438Z",
+            "modified": "2023-12-30T12:37:25.723Z",
+            "headers": [],
+            "params": [],
+            "tests": [],
+            "preReq": {
+                "options": {
+                    "clearCookies": true
+                }
+            },
+            "postReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "const cookies = await tc.getCookies();",
+                            "const cookie = cookies.find(x => x[\"key\"] === \"XSRF-TOKEN\");",
+                            "const value = cookie[\"value\"].replace(\"%3D\", \"\");",
+                            "console.log(\"xsrf-token\", value)",
+                            "tc.setVar(\"xsrf-token\", value)"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "03cd7099-7d33-4f3a-976a-571ad8d0b76b",
+            "colId": "f240a3fe-ee25-4e16-b495-05d0ce14c028",
+            "containerId": "d3956703-2179-4204-be5b-67b0414d6595",
+            "name": "Get Single Article (Show)",
+            "url": "{{APP_URL}}/articles/5",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-12-30T10:57:30.473Z",
+            "modified": "2023-12-30T11:22:47.382Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "9e4eb7d5-ca81-4011-9ebc-9707793af8d4",
+            "colId": "f240a3fe-ee25-4e16-b495-05d0ce14c028",
+            "containerId": "bcd8e8f5-8b01-439a-b049-06cb716f0962",
+            "name": "Auth (Login)",
+            "url": "http://localhost:8000/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-12-30T11:44:05.874Z",
+            "modified": "2023-12-30T12:37:35.690Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "X-XSRF-TOKEN",
+                    "value": "{{xsrf-token}}"
+                },
+                {
+                    "name": "X-XSRF-TOKEN",
+                    "value": "eyJpdiI6ImRCT2p0SHJPWXRlQWx2RVZvOEIxV1E9PSIsInZhbHVlIjoib1U1TDQybWtaZlo3WGNDMzl3dXpzSmw0T1gyWkF6ay9sYUpUV2YvWGZMNXNDZ011bHpvaWVselpwSWR1Qi9oaGMvTVpQaE1RQlh0Ym92U3didVZFUU1jZjBCelh4NjI0cGhzQUcvbk8wQUxPUTc0NTVQMy84a1BTZDlxbTMraDAiLCJtYWMiOiJlZjhlODY3ZTEzODc1NTNmM2JjMjk5NjlmOWRjN2FhNjAwOTQzNjYxZTA3NGQ1OWUyYTBiMzVlMjllZTgxYWExIiwidGFnIjoiIn0",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"jhon@example.com\",\n  \"password\": \"123456\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "json.data.token",
+                    "action": "setto",
+                    "value": "{{bearer_token}}"
+                }
+            ]
+        },
+        {
+            "_id": "87447fba-c492-484b-9091-96126e7530ba",
+            "colId": "f240a3fe-ee25-4e16-b495-05d0ce14c028",
+            "containerId": "d3956703-2179-4204-be5b-67b0414d6595",
+            "name": "Create Article (Store)",
+            "url": "{{APP_URL}}/articles",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-12-30T11:20:11.296Z",
+            "modified": "2023-12-30T11:38:45.806Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"A new way to explo 2\",\n  \"body\": \"Join us in a journey of lorem ipsumes to explore the world\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "7d17008c-ff5c-4c92-ad41-da4a1fc6f40b",
+            "colId": "f240a3fe-ee25-4e16-b495-05d0ce14c028",
+            "containerId": "d3956703-2179-4204-be5b-67b0414d6595",
+            "name": "Update Article (Update)",
+            "url": "{{APP_URL}}/articles/9",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2023-12-30T11:29:15.373Z",
+            "modified": "2023-12-30T11:41:47.459Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"A change of title\",\n  \"body\": \"Quam provident ea nemo ipsam voluptas nulla autem. Recusandae eum numquam repellat eaque asperiores dolorem. Sed quibusdam corporis qui totam. Iste voluptatem quia minima reprehenderit a. Totally correct answer! no title\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "9f2c7c60-bae2-4af8-9bed-c7806403feb7",
+            "colId": "f240a3fe-ee25-4e16-b495-05d0ce14c028",
+            "containerId": "d3956703-2179-4204-be5b-67b0414d6595",
+            "name": "Delete Article (Destroy)",
+            "url": "{{APP_URL}}/articles/13",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2023-12-30T11:24:52.372Z",
+            "modified": "2023-12-30T11:38:52.690Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
