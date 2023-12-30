@@ -5,9 +5,9 @@ namespace App\Http\Resources\V1;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ArticleResources extends JsonResource
+class ArticleResource extends JsonResource
 {
-    public static $wrap = "articles";
+    public static $wrap = "article";
     /**
      * Transform the resource into an array.
      *
@@ -25,7 +25,7 @@ class ArticleResources extends JsonResource
                 "created_at" => $this->created_at,
             ],
             "relationships" => [
-                "author" => AuthorResources::make($this->author())
+                "author" => AuthorResource::make($this->author())
             ],
             "links" => [
                 "self" => route("articles.show", $this->id()),

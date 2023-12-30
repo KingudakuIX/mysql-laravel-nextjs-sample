@@ -20,7 +20,10 @@ use Illuminate\Support\Facades\Route;
 
 // Require authentication to access this API
 
-Route::group(["prefix" => "v1", "middleware" => "auth:sanctum"], function () {
+Route::group([
+    "prefix" => "v1",
+   // "middleware" => "auth:sanctum"
+], function () {
     // Articles
     Route::apiResource("/articles", ArticleController::class);
 
