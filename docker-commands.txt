@@ -1,0 +1,4 @@
+1. docker-compose build
+2. docker-compose up 
+3. docker exec -it backend bash #Normal user login to backend container
+4. docker exec -it -u 0 backend bash #Super user login to backend container

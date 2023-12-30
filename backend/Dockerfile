@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     zip \
-    unzip
+    unzip \
+    ne
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -29,6 +30,10 @@ RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
 
 # Set working directory
-WORKDIR /var/www
+WORKDIR /var/www/sample-app
 
 USER $user
+
+EXPOSE 8000
+CMD php artisan serve --host=0.0.0.0
+

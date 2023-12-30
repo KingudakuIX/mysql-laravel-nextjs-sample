@@ -1,0 +1,11 @@
+1. php artisan serve --host=0.0.0.0  #Start laravel server on port 0.0.0.0
+2. php artisan make:model Article -m #Create a new table named Article
+3. php artisan make:factory ArticleFactory 
+#Delete the current database and recreate everything with the seeding.
+4. php artisan migrate:fresh --seed  
+#Create a new controller with index, store, update, delete, show methods for Article model
+5. php artisan make:controller API/V1/ArticleController -m Article --api 
+# Create a resource for Author
+6. php artisan make:resource V1/AuthorResources
+# Create a resource for Article as a collection (-c)
+7. php artisan make:resource V1/ArticleCollection -c
