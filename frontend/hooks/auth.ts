@@ -58,7 +58,7 @@ export const useAuth = ({ middleware }: { middleware: any }) => {
     if (user || error) {
       setIsLoading(false);
     }
-    if (middleware === "guest" && user) router.push("/");
+    if (middleware === "guest" && user) router.push("/dashboard");
     if (middleware === "auth" && error) router.push("/login");
   }, [user, error])
 

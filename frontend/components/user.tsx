@@ -5,8 +5,6 @@ import React from 'react'
 function user() {
   const { user, isLoading } = useAuth({ middleware: "auth" });
 
-  console.log("user", user)
-
   if (isLoading) return <div>Loading...</div>
 
   return (

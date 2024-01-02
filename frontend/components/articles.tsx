@@ -4,7 +4,9 @@ import React from 'react'
 
 function Articles() {
 
-  const articles = useArticles();
+  const { articles, isLoading } = useArticles();
+
+  if(isLoading) return <div>Fetching articles...</div>
 
   return (
     <div className='flex flex-col gap-2 mb-2'>
