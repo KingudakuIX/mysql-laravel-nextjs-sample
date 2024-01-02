@@ -1,0 +1,9 @@
+$this->  // this.
+
+ROUTES:
+- Route::apiResource("/articles", ArticleController::class);
+- Route::get("/authors/{user}", [AuthorController::class, 'show'])->name("authors");
+
+// First element specify class, second specify the method to call:
+// AuthorController::class = class
+// 'show' = method
