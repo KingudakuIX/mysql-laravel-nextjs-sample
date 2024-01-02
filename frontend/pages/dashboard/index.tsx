@@ -1,11 +1,15 @@
+import Articles from '@/components/articles'
+import Logout from '@/components/logout'
 import User from '@/components/user'
 import React from 'react'
 
 function Dashboard() {
   return (
-    <div>
+    <main className='container p-2'>
       <User />
-    </div>
+      <Articles />
+      <Logout />
+    </main>
   )
 }
 

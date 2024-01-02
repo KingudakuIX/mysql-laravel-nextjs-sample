@@ -10,9 +10,7 @@ function user() {
   if (isLoading) return <div>Loading...</div>
 
   return (
-    <div>
-      {user?.name}
-    </div>
+    <h2 className='text-lg'>Welcome {user?.name}</h2>
   )
 }
 
