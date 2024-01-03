@@ -37,7 +37,16 @@ export const useAuth = ({ middleware }: { middleware: any }) => {
 
     axios
       .post("/login", props)
-      .then(async () => await mutate() && router.push("/dashboard"))
+      .then(async (res) => {
+
+        const token = res.data.data.token;
+        window.localStorage.setItem("token", token);
+
+        await mutate();
+        console.log("I'm here...")
+
+        router.push("/dashboard");
+      })
       .catch((err: any) => {
         if (err.response.status !== 422) throw err;
         // @ts-ignore

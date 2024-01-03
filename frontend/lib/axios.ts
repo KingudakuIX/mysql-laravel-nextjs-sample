@@ -11,6 +11,8 @@ export const axios = Axios.create({
 axios.interceptors.request.use((config) => {
   const cookie = getCookie("XSRF-TOKEN");
   config.headers.set("X-XSRF-TOKEN", cookie)
+  const token = window.localStorage.getItem("token");
+  config.headers.set("authorization", `Bearer ${token}`)
   return config;
 }, function (error) {
   return Promise.reject(error);
